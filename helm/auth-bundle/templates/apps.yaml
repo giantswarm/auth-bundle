@@ -1,0 +1,102 @@
+{{- range $key, $value := .Values.apps }}
+{{- $appName := include "app.name" (dict "app" .appName "cluster" $.Values.clusterID "ns" $.Release.Namespace) }}
+{{- if .enabled }}
+---
+apiVersion: application.giantswarm.io/v1alpha1
+kind: App
+metadata:
+  {{- if .dependsOn }}
+  annotations:
+    {{- if hasPrefix "org-" $.Release.Namespace }}
+    # App is deployed in the org- namespace so the secret name is prefixed by the cluster-id
+    app-operator.giantswarm.io/depends-on: {{ printf "%s-%s" $.Values.clusterID .dependsOn -}}
+    {{- else }}
+    # App is deployed in the cluster-id namespace so prefix is unneeded
+    app-operator.giantswarm.io/depends-on: {{ .dependsOn -}}
+    {{- end }}
+  {{- end }}
+  labels:
+    app.kubernetes.io/name: {{ .appName }}
+    {{- include "labels.common" $ | nindent 4 }}
+  name: {{ $appName }}
+  namespace: {{ $.Release.Namespace }}
+spec:
+  catalog: {{ .catalog }}
+  {{- if ne $.Release.Namespace "giantswarm" }} ## Vintage MCs do not have this CM
+  config:
+    configMap:
+      name: {{ $.Values.clusterID }}-cluster-values
+      namespace: {{ $.Release.Namespace }}
+  {{- end }}
+  install:
+    skipCRDs: {{.skipCRDs | default false }}
+    timeout: 10m
+  upgrade: 
+    timeout: 10m
+  kubeConfig:
+    {{- if eq $.Release.Namespace "giantswarm" }}  ## Vintage MCs do not have a kubeconfig secret
+    inCluster: true
+    {{- else }}
+    context:
+      name: {{ $.Values.clusterID }}-admin@{{ $.Values.clusterID }}
+    inCluster: false
+    secret:
+      name: {{ $.Values.clusterID }}-kubeconfig
+      namespace: {{ $.Release.Namespace}}
+    {{- end }}
+  name: {{ .chartName }}
+  namespace: {{ .namespace }}
+  version: {{ .version }}
+  {{- if .extraConfigs }}
+  extraConfigs:
+  {{- range $extraConfig := .extraConfigs }}
+  - kind: {{ $extraConfig.kind }}
+    name: {{ tpl $extraConfig.name $ }}
+    namespace: {{ tpl $extraConfig.namespace $ }}
+  {{- end }}
+  {{- end }}
+  {{- if .userConfig }}
+  {{- if or .userConfig.configMap .userConfig.secret }}
+  userConfig:
+    {{- if .userConfig.configMap }}
+    configMap:
+      name: {{ $appName }}-user-values
+      namespace: {{ $.Release.Namespace }}
+    {{- end }}
+    {{- if .userConfig.secret }}
+    secret:
+      name: {{ $appName }}-user-secrets
+      namespace: {{ $.Release.Namespace }}
+    {{- end }}
+  {{- end }}
+  {{- end }}
+{{- end }}
+{{- if .userConfig }}
+{{- if .userConfig.configMap }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/name: {{ .appName }}
+    {{- include "labels.common" $ | nindent 4 }}
+  name: {{ $appName }}-user-values
+  namespace: {{ $.Release.Namespace }}
+data:
+  {{- (tpl (.userConfig.configMap | toYaml | toString) $) | nindent 2 }}
+{{- end }}
+{{- if .userConfig.secret }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    app.kubernetes.io/name: {{ .appName }}
+    {{- include "labels.common" $ | nindent 4 }}
+  name: {{ $appName }}-user-secrets
+  namespace: {{ $.Release.Namespace }}
+stringData:
+  {{- (tpl (.userConfig.secret | toYaml | toString) $) | nindent 2 }}
+{{- end }}
+{{- end }}
+{{- end }}

@@ -1,0 +1,48 @@
+clusterID: ""
+organization: ""
+
+apps:
+  dex-app:
+    appName: dex-app
+    chartName: dex-app
+    catalog: default
+    enabled: true
+    namespace: kube-system
+    # used by renovate
+    # repo: giantswarm/dex-app
+    version: 1.34.3
+    userConfig: {}
+    # a list of extraConfigs for the App,
+    # It can be secret or configmap
+    # https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#example
+    extraConfigs: []
+
+  athena:
+    appName: athena
+    chartName: athena
+    catalog: default
+    enabled: true
+    namespace: kube-system
+    # used by renovate
+    # repo: giantswarm/athena
+    version: 1.9.4
+    userConfig: {}
+    # a list of extraConfigs for the App,
+    # It can be secret or configmap
+    # https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#example
+    extraConfigs: []
+
+  ingress-nginx-app:
+    appName: ingress-nginx-app
+    chartName: ingress-nginx-app
+    catalog: default
+    enabled: false
+    namespace: kube-system
+    # used by renovate
+    # repo: giantswarm/ingress-nginx-app
+    version: 2.30.1
+    userConfig: {}
+    # a list of extraConfigs for the App,
+    # It can be secret or configmap
+    # https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#example
+    extraConfigs: []

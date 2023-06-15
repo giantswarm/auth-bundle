@@ -11,6 +11,9 @@ apps:
     # used by renovate
     # repo: giantswarm/dex-app
     version: 1.34.3
+    clusterValues:
+      configMap: true
+      secret: true
     userConfig: {}
     # a list of extraConfigs for the App,
     # It can be secret or configmap
@@ -22,6 +25,9 @@ apps:
     chartName: athena
     catalog: default
     enabled: true
+    clusterValues:
+      configMap: true
+      secret: true
     namespace: kube-system
     # used by renovate
     # repo: giantswarm/athena
@@ -36,7 +42,10 @@ apps:
     appName: ingress-nginx-app
     chartName: ingress-nginx-app
     catalog: default
-    enabled: false
+    enabled: true
+    clusterValues:
+      configMap: true
+      secret: true
     namespace: kube-system
     # used by renovate
     # repo: giantswarm/ingress-nginx-app

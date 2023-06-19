@@ -22,17 +22,23 @@ metadata:
   namespace: {{ $.Release.Namespace }}
 spec:
   catalog: {{ .catalog }}
-  {{- if ne $.Release.Namespace "giantswarm" }} ## Vintage MCs do not have this CM
+  {{- if ne $.Release.Namespace "giantswarm" }}
+  {{- if .clusterValues }}
+  {{- if or .clusterValues.configMap .clusterValues.secret }}
   config:
+    {{- if .clusterValues.configMap }}
     configMap:
       name: {{ $.Values.clusterID }}-cluster-values
       namespace: {{ $.Release.Namespace }}
+    {{- end }}
+    {{- if .clusterValues.secret }}
+    secret:
+      name: {{ $.Values.clusterID }}-cluster-values
+      namespace: {{ $.Release.Namespace }}
+    {{- end }}
   {{- end }}
-  install:
-    skipCRDs: {{.skipCRDs | default false }}
-    timeout: 10m
-  upgrade: 
-    timeout: 10m
+  {{- end }}
+  {{- end }}  
   kubeConfig:
     {{- if eq $.Release.Namespace "giantswarm" }}  ## Vintage MCs do not have a kubeconfig secret
     inCluster: true

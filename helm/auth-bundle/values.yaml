@@ -1,5 +1,6 @@
 clusterID: ""
 organization: ""
+managementCluster: ""
 
 apps:
   dex-app:
@@ -10,8 +11,16 @@ apps:
     namespace: kube-system
     # used by renovate
     # repo: giantswarm/dex-app
-    version: 1.34.3
-    userConfig: {}
+    version: 1.35.0
+    clusterValues:
+      configMap: true
+      secret: true
+    userConfig:
+      configMap:
+        values: |
+          ingress:
+            tls:
+              letsencrypt: true
     # a list of extraConfigs for the App,
     # It can be secret or configmap
     # https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#example
@@ -22,10 +31,13 @@ apps:
     chartName: athena
     catalog: default
     enabled: true
+    clusterValues:
+      configMap: true
+      secret: true
     namespace: kube-system
     # used by renovate
     # repo: giantswarm/athena
-    version: 1.9.4
+    version: 1.10.1
     userConfig: {}
     # a list of extraConfigs for the App,
     # It can be secret or configmap
@@ -36,7 +48,10 @@ apps:
     appName: ingress-nginx-app
     chartName: ingress-nginx-app
     catalog: default
-    enabled: false
+    enabled: true
+    clusterValues:
+      configMap: true
+      secret: true
     namespace: kube-system
     # used by renovate
     # repo: giantswarm/ingress-nginx-app

@@ -1,161 +1,86 @@
 {
-    "$schema": "http://json-schema.org/schema#",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$defs": {
+        "app": {
+            "additionalProperties": false,
+            "type": "object",
+            "properties": {
+                "appName": {
+                    "type": "string"
+                },
+                "catalog": {
+                    "type": "string"
+                },
+                "chartName": {
+                    "type": "string"
+                },
+                "clusterValues": {
+                    "type": "object",
+                    "properties": {
+                        "configMap": {
+                            "type": "boolean"
+                        },
+                        "secret": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "extraConfigs": {
+                    "type": "array",
+                    "items": {
+                        "properties": {
+                            "kind": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "userConfig": {
+                    "type": "object",
+                    "properties": {
+                        "configMap": {
+                            "type": "object",
+                            "properties": {
+                                "values": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "namespace": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        }
+    },
     "type": "object",
     "properties": {
         "apps": {
             "type": "object",
             "properties": {
                 "athena": {
-                    "type": "object",
-                    "properties": {
-                        "appName": {
-                            "type": "string"
-                        },
-                        "catalog": {
-                            "type": "string"
-                        },
-                        "chartName": {
-                            "type": "string"
-                        },
-                        "clusterValues": {
-                            "type": "object",
-                            "properties": {
-                                "configMap": {
-                                    "type": "boolean"
-                                },
-                                "secret": {
-                                    "type": "boolean"
-                                }
-                            }
-                        },
-                        "enabled": {
-                            "type": "boolean"
-                        },
-                        "extraConfigs": {
-                            "type": "array"
-                        },
-                        "namespace": {
-                            "type": "string"
-                        },
-                        "userConfig": {
-                            "type": "object",
-                            "properties": {
-                                "configMap": {
-                                    "type": "object",
-                                    "properties": {
-                                        "values": {
-                                            "type": "string"
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "version": {
-                            "type": "string"
-                        }
-                    }
+                    "$ref": "#/$defs/app"
                 },
                 "dex-app": {
-                    "type": "object",
-                    "properties": {
-                        "appName": {
-                            "type": "string"
-                        },
-                        "catalog": {
-                            "type": "string"
-                        },
-                        "chartName": {
-                            "type": "string"
-                        },
-                        "clusterValues": {
-                            "type": "object",
-                            "properties": {
-                                "configMap": {
-                                    "type": "boolean"
-                                },
-                                "secret": {
-                                    "type": "boolean"
-                                }
-                            }
-                        },
-                        "enabled": {
-                            "type": "boolean"
-                        },
-                        "extraConfigs": {
-                            "type": "array"
-                        },
-                        "namespace": {
-                            "type": "string"
-                        },
-                        "userConfig": {
-                            "type": "object",
-                            "properties": {
-                                "configMap": {
-                                    "type": "object",
-                                    "properties": {
-                                        "values": {
-                                            "type": "string"
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "version": {
-                            "type": "string"
-                        }
-                    }
+                    "$ref": "#/$defs/app"
                 },
                 "ingress-nginx-app": {
-                    "type": "object",
-                    "properties": {
-                        "appName": {
-                            "type": "string"
-                        },
-                        "catalog": {
-                            "type": "string"
-                        },
-                        "chartName": {
-                            "type": "string"
-                        },
-                        "clusterValues": {
-                            "type": "object",
-                            "properties": {
-                                "configMap": {
-                                    "type": "boolean"
-                                },
-                                "secret": {
-                                    "type": "boolean"
-                                }
-                            }
-                        },
-                        "enabled": {
-                            "type": "boolean"
-                        },
-                        "extraConfigs": {
-                            "type": "array"
-                        },
-                        "namespace": {
-                            "type": "string"
-                        },
-                        "userConfig": {
-                            "type": "object",
-                            "properties": {
-                                "configMap": {
-                                    "type": "object",
-                                    "properties": {
-                                        "values": {
-                                            "type": "string"
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "version": {
-                            "type": "string"
-                        }
-                    }
+                    "$ref": "#/$defs/app"
                 }
             }
+        },
+        "managementCluster": {
+            "type": "string"
         },
         "clusterID": {
             "type": "string"

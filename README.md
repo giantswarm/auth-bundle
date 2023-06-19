@@ -6,9 +6,9 @@ The auth bundle provides all necessary components to enable auth capabilities in
 
 ## Apps
 
-* dex-app
-* athena
-* ingress-nginx-app
+* [dex-app](https://github.com/giantswarm/dex-app)
+* [athena](https://github.com/giantswarm/athena)
+* [ingress-nginx-app](https://github.com/giantswarm/ingress-nginx-app)
 
 ## Installing
 

@@ -6,7 +6,7 @@ apps:
   dex-app:
     appName: dex-app
     chartName: dex-app
-    catalog: default
+    catalog: giantswarm
     enabled: true
     namespace: kube-system
     # used by renovate
@@ -29,7 +29,7 @@ apps:
   athena:
     appName: athena
     chartName: athena
-    catalog: default
+    catalog: giantswarm
     enabled: true
     clusterValues:
       configMap: true
@@ -47,7 +47,7 @@ apps:
   ingress-nginx-app:
     appName: ingress-nginx-app
     chartName: ingress-nginx-app
-    catalog: default
+    catalog: giantswarm
     enabled: true
     clusterValues:
       configMap: true

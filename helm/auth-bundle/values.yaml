@@ -6,9 +6,9 @@ apps:
   dex-app:
     appName: dex-app
     chartName: dex-app
-    catalog: default
+    catalog: giantswarm
     enabled: true
-    namespace: kube-system
+    namespace: auth
     # used by renovate
     # repo: giantswarm/dex-app
     version: 1.35.0
@@ -19,8 +19,7 @@ apps:
       configMap:
         values: |
           ingress:
-            tls:
-              letsencrypt: true
+            externalDNS: true
     # a list of extraConfigs for the App,
     # It can be secret or configmap
     # https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#example
@@ -29,16 +28,44 @@ apps:
   athena:
     appName: athena
     chartName: athena
-    catalog: default
+    catalog: giantswarm
     enabled: true
     clusterValues:
       configMap: true
       secret: true
-    namespace: kube-system
+    namespace: auth
     # used by renovate
     # repo: giantswarm/athena
     version: 1.10.1
-    userConfig: {}
+    userConfig:
+      configMap:
+        values: |
+          ingress:
+            externalDNS: true
+    # a list of extraConfigs for the App,
+    # It can be secret or configmap
+    # https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#example
+    extraConfigs: []
+
+  rbac-bootstrap:
+    appName: rbac-bootstrap
+    chartName: rbac-bootstrap
+    catalog: giantswarm
+    enabled: true
+    clusterValues:
+      configMap: true
+      secret: true
+    namespace: auth
+    # used by renovate
+    # repo: giantswarm/rbac-bootstrap-app
+    version: 1.10.1
+    userConfig:
+      configMap:
+        values: |
+          bindings:
+            - role: cluster-admin
+              groups:
+                - giantswarm-ad:giantswarm-admins
     # a list of extraConfigs for the App,
     # It can be secret or configmap
     # https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#example
@@ -46,16 +73,16 @@ apps:
 
   ingress-nginx-app:
     appName: ingress-nginx-app
-    chartName: ingress-nginx-app
-    catalog: default
+    chartName: ingress-nginx
+    catalog: giantswarm
     enabled: true
     clusterValues:
       configMap: true
       secret: true
-    namespace: kube-system
+    namespace: auth
     # used by renovate
     # repo: giantswarm/ingress-nginx-app
-    version: 2.30.1
+    version: 3.0.0-alpha1
     userConfig: {}
     # a list of extraConfigs for the App,
     # It can be secret or configmap

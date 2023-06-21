@@ -76,6 +76,9 @@
                 },
                 "ingress-nginx-app": {
                     "$ref": "#/$defs/app"
+                },
+                "rbac-bootstrap": {
+                    "$ref": "#/$defs/app"
                 }
             }
         },

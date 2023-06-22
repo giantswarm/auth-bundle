@@ -83,7 +83,12 @@ apps:
     # used by renovate
     # repo: giantswarm/ingress-nginx-app
     version: 3.0.0-alpha1
-    userConfig: {}
+    userConfig:
+      configMap:
+        values: |
+          controller:
+            ingressClassResource:
+              default: true
     # a list of extraConfigs for the App,
     # It can be secret or configmap
     # https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#example

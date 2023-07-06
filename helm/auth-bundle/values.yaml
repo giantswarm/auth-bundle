@@ -45,7 +45,10 @@ apps:
     # a list of extraConfigs for the App,
     # It can be secret or configmap
     # https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#example
-    extraConfigs: []
+    extraConfigs:
+      - kind: configMap
+        name: "{{ $.Values.clusterID }}-default-auth-config"
+        namespace: "{{ $.Release.Namespace }}"
 
   rbac-bootstrap:
     appName: rbac-bootstrap
@@ -59,17 +62,14 @@ apps:
     # used by renovate
     # repo: giantswarm/rbac-bootstrap-app
     version: 1.10.1
-    userConfig:
-      configMap:
-        values: |
-          bindings:
-            - role: cluster-admin
-              groups:
-                - giantswarm-ad:giantswarm-admins
+    userConfig: {}
     # a list of extraConfigs for the App,
     # It can be secret or configmap
     # https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#example
-    extraConfigs: []
+    extraConfigs:
+      - kind: configMap
+        name: "{{ $.Values.clusterID }}-default-auth-config"
+        namespace: "{{ $.Release.Namespace }}"
 
   ingress-nginx-app:
     appName: ingress-nginx-app

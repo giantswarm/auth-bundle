@@ -11,7 +11,7 @@ apps:
     namespace: auth
     # used by renovate
     # repo: giantswarm/dex-app
-    version: 1.35.0
+    version: 1.36.0
     clusterValues:
       configMap: true
       secret: true
@@ -56,8 +56,8 @@ apps:
     catalog: giantswarm
     enabled: true
     clusterValues:
-      configMap: true
-      secret: true
+      configMap: false
+      secret: false
     namespace: auth
     # used by renovate
     # repo: giantswarm/rbac-bootstrap-app
@@ -71,25 +71,3 @@ apps:
         name: "{{ $.Values.clusterID }}-default-auth-config"
         namespace: "{{ $.Release.Namespace }}"
 
-  ingress-nginx-app:
-    appName: ingress-nginx-app
-    chartName: ingress-nginx
-    catalog: giantswarm
-    enabled: true
-    clusterValues:
-      configMap: true
-      secret: true
-    namespace: auth
-    # used by renovate
-    # repo: giantswarm/ingress-nginx-app
-    version: 3.0.0-alpha1
-    userConfig:
-      configMap:
-        values: |
-          controller:
-            ingressClassResource:
-              default: true
-    # a list of extraConfigs for the App,
-    # It can be secret or configmap
-    # https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#example
-    extraConfigs: []

@@ -70,4 +70,3 @@ apps:
       - kind: configMap
         name: "{{ $.Values.clusterID }}-default-auth-config"
         namespace: "{{ $.Release.Namespace }}"
-

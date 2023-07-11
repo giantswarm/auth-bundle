@@ -11,7 +11,7 @@ apps:
     namespace: kube-system
     # used by renovate
     # repo: giantswarm/dex-app
-    version: 1.36.0
+    version: 1.36.0-442e1c2857d914b783753185715c0cce325b6e10
     clusterValues:
       configMap: true
       secret: true
@@ -20,6 +20,7 @@ apps:
         values: |
           ingress:
             externalDNS: true
+            ingressClassName: auth
     # a list of extraConfigs for the App,
     # It can be secret or configmap
     # https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#example
@@ -36,12 +37,13 @@ apps:
     namespace: kube-system
     # used by renovate
     # repo: giantswarm/athena
-    version: 1.10.1
+    version: 1.10.2-88bcbf378056ca6538c584a8451c155b18af041d
     userConfig:
       configMap:
         values: |
           ingress:
             externalDNS: true
+            ingressClassName: auth
     # a list of extraConfigs for the App,
     # It can be secret or configmap
     # https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#example

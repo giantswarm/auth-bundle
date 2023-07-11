@@ -74,7 +74,7 @@
                 "dex-app": {
                     "$ref": "#/$defs/app"
                 },
-                "ingress-nginx-app": {
+                "rbac-bootstrap": {
                     "$ref": "#/$defs/app"
                 }
             }

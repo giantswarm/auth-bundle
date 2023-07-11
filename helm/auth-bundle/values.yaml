@@ -6,12 +6,12 @@ apps:
   dex-app:
     appName: dex-app
     chartName: dex-app
-    catalog: default
+    catalog: giantswarm
     enabled: true
     namespace: kube-system
     # used by renovate
     # repo: giantswarm/dex-app
-    version: 1.35.0
+    version: 1.36.0
     clusterValues:
       configMap: true
       secret: true
@@ -19,8 +19,7 @@ apps:
       configMap:
         values: |
           ingress:
-            tls:
-              letsencrypt: true
+            externalDNS: true
     # a list of extraConfigs for the App,
     # It can be secret or configmap
     # https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#example
@@ -29,7 +28,7 @@ apps:
   athena:
     appName: athena
     chartName: athena
-    catalog: default
+    catalog: giantswarm
     enabled: true
     clusterValues:
       configMap: true
@@ -38,26 +37,36 @@ apps:
     # used by renovate
     # repo: giantswarm/athena
     version: 1.10.1
-    userConfig: {}
+    userConfig:
+      configMap:
+        values: |
+          ingress:
+            externalDNS: true
     # a list of extraConfigs for the App,
     # It can be secret or configmap
     # https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#example
-    extraConfigs: []
+    extraConfigs:
+      - kind: configMap
+        name: "{{ $.Values.clusterID }}-default-auth-config"
+        namespace: "{{ $.Release.Namespace }}"
 
-  ingress-nginx-app:
-    appName: ingress-nginx-app
-    chartName: ingress-nginx-app
-    catalog: default
+  rbac-bootstrap:
+    appName: default-rbac-bootstrap
+    chartName: rbac-bootstrap
+    catalog: giantswarm
     enabled: true
     clusterValues:
-      configMap: true
-      secret: true
+      configMap: false
+      secret: false
     namespace: kube-system
     # used by renovate
-    # repo: giantswarm/ingress-nginx-app
-    version: 2.30.1
+    # repo: giantswarm/rbac-bootstrap-app
+    version: 0.2.1
     userConfig: {}
     # a list of extraConfigs for the App,
     # It can be secret or configmap
     # https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#example
-    extraConfigs: []
+    extraConfigs:
+      - kind: configMap
+        name: "{{ $.Values.clusterID }}-default-auth-config"
+        namespace: "{{ $.Release.Namespace }}"

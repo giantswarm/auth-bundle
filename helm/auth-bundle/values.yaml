@@ -6,7 +6,7 @@ apps:
   dex-app:
     appName: dex-app
     chartName: dex-app
-    catalog: giantswarm
+    catalog: giantswarm-test
     enabled: true
     namespace: kube-system
     # used by renovate
@@ -55,7 +55,7 @@ apps:
   rbac-bootstrap:
     appName: default-rbac-bootstrap
     chartName: rbac-bootstrap
-    catalog: giantswarm
+    catalog: giantswarm-test
     enabled: true
     clusterValues:
       configMap: false

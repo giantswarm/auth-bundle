@@ -29,7 +29,7 @@ apps:
   athena:
     appName: athena
     chartName: athena
-    catalog: giantswarm
+    catalog: giantswarm-test
     enabled: true
     clusterValues:
       configMap: true
@@ -55,7 +55,7 @@ apps:
   rbac-bootstrap:
     appName: default-rbac-bootstrap
     chartName: rbac-bootstrap
-    catalog: giantswarm-test
+    catalog: giantswarm
     enabled: true
     clusterValues:
       configMap: false

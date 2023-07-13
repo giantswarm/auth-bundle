@@ -6,12 +6,12 @@ apps:
   dex-app:
     appName: dex-app
     chartName: dex-app
-    catalog: giantswarm-test
+    catalog: giantswarm
     enabled: true
     namespace: kube-system
     # used by renovate
     # repo: giantswarm/dex-app
-    version: 1.36.0-442e1c2857d914b783753185715c0cce325b6e10
+    version: 1.37.0
     clusterValues:
       configMap: true
       secret: true
@@ -29,7 +29,7 @@ apps:
   athena:
     appName: athena
     chartName: athena
-    catalog: giantswarm-test
+    catalog: giantswarm
     enabled: true
     clusterValues:
       configMap: true
@@ -37,7 +37,7 @@ apps:
     namespace: kube-system
     # used by renovate
     # repo: giantswarm/athena
-    version: 1.10.2-88bcbf378056ca6538c584a8451c155b18af041d
+    version: 1.10.3
     userConfig:
       configMap:
         values: |

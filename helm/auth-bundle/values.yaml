@@ -8,7 +8,7 @@ apps:
     chartName: dex-app
     catalog: giantswarm
     enabled: true
-    namespace: kube-system
+    namespace: giantswarm
     # used by renovate
     # repo: giantswarm/dex-app
     version: 1.37.0
@@ -34,7 +34,7 @@ apps:
     clusterValues:
       configMap: true
       secret: true
-    namespace: kube-system
+    namespace: giantswarm
     # used by renovate
     # repo: giantswarm/athena
     version: 1.10.3
@@ -60,7 +60,7 @@ apps:
     clusterValues:
       configMap: false
       secret: false
-    namespace: kube-system
+    namespace: giantswarm
     # used by renovate
     # repo: giantswarm/rbac-bootstrap-app
     version: 0.2.1

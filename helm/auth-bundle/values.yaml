@@ -72,3 +72,27 @@ apps:
       - kind: configMap
         name: "{{ $.Values.clusterID }}-default-auth-config"
         namespace: "{{ $.Release.Namespace }}"
+
+  ingress-nginx:
+    appName: default-ingress-nginx
+    chartName: ingress-nginx-app
+    catalog: default
+    enabled: true
+    clusterValues:
+      configMap: true
+      secret: true
+    namespace: kube-system
+    # used by renovate
+    # repo: giantswarm/ingress-nginx-app
+    version: v3.0.0-beta1
+    userConfig:
+      configMap:
+        values: |
+          controller:
+            ingressClassResource:
+              name: auth
+              controllerValue: k8s.io/ingress-nginx-auth
+    # a list of extraConfigs for the App,
+    # It can be secret or configmap
+    # https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#example
+    extraConfigs: []

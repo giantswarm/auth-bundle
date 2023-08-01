@@ -75,7 +75,7 @@ apps:
 
   ingress-nginx:
     appName: default-ingress-nginx
-    chartName: ingress-nginx-app
+    chartName: ingress-nginx
     catalog: giantswarm
     enabled: true
     clusterValues:

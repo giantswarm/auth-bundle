@@ -76,7 +76,7 @@ apps:
   ingress-nginx:
     appName: default-ingress-nginx
     chartName: ingress-nginx-app
-    catalog: default
+    catalog: giantswarm
     enabled: true
     clusterValues:
       configMap: true
@@ -84,7 +84,7 @@ apps:
     namespace: kube-system
     # used by renovate
     # repo: giantswarm/ingress-nginx-app
-    version: 2.30.1
+    version: 3.0.0-beta1
     userConfig:
       configMap:
         values: |

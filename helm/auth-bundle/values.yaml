@@ -84,7 +84,7 @@ apps:
     namespace: kube-system
     # used by renovate
     # repo: giantswarm/ingress-nginx-app
-    version: v3.0.0-beta1
+    version: 2.30.1
     userConfig:
       configMap:
         values: |

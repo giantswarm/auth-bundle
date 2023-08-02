@@ -29,7 +29,7 @@ apps:
   athena:
     appName: athena
     chartName: athena
-    catalog: giantswarm-test
+    catalog: giantswarm
     enabled: true
     clusterValues:
       configMap: true
@@ -37,7 +37,7 @@ apps:
     namespace: giantswarm
     # used by renovate
     # repo: giantswarm/athena
-    version: 1.10.3-90f71e77619c8a4c8e081d0563ecdc145c9bc9ad
+    version: 1.11.0
     userConfig:
       configMap:
         values: |

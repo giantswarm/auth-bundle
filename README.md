@@ -9,6 +9,7 @@ The auth bundle provides all necessary components to enable auth capabilities in
 * [dex-app](https://github.com/giantswarm/dex-app)
 * [athena](https://github.com/giantswarm/athena)
 * [rbac-bootstrap-app](https://github.com/giantswarm/rbac-bootstrap-app)
+* [ingress-nginx](https://github.com/giantswarm/ingress-nginx-app)
 
 ## Installing
 

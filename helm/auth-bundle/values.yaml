@@ -37,7 +37,7 @@ apps:
     namespace: giantswarm
     # used by renovate
     # repo: giantswarm/athena
-    version: 1.10.3
+    version: 1.11.0
     userConfig:
       configMap:
         values: |
@@ -72,3 +72,27 @@ apps:
       - kind: configMap
         name: "{{ $.Values.clusterID }}-default-auth-config"
         namespace: "{{ $.Release.Namespace }}"
+
+  ingress-nginx:
+    appName: default-ingress-nginx
+    chartName: ingress-nginx
+    catalog: giantswarm
+    enabled: true
+    clusterValues:
+      configMap: true
+      secret: true
+    namespace: kube-system
+    # used by renovate
+    # repo: giantswarm/ingress-nginx-app
+    version: 3.0.0-beta1
+    userConfig:
+      configMap:
+        values: |
+          controller:
+            ingressClassResource:
+              name: auth
+              controllerValue: k8s.io/ingress-nginx-auth
+    # a list of extraConfigs for the App,
+    # It can be secret or configmap
+    # https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#example
+    extraConfigs: []

@@ -20,7 +20,6 @@ apps:
         values: |
           ingress:
             externalDNS: true
-            ingressClassName: auth
     # a list of extraConfigs for the App,
     # It can be secret or configmap
     # https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#example
@@ -43,7 +42,6 @@ apps:
         values: |
           ingress:
             externalDNS: true
-            ingressClassName: auth
     # a list of extraConfigs for the App,
     # It can be secret or configmap
     # https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#example
@@ -85,13 +83,7 @@ apps:
     # used by renovate
     # repo: giantswarm/ingress-nginx-app
     version: 3.2.1
-    userConfig:
-      configMap:
-        values: |
-          controller:
-            ingressClassResource:
-              name: auth
-              controllerValue: k8s.io/ingress-nginx-auth
+    userConfig: {}
     # a list of extraConfigs for the App,
     # It can be secret or configmap
     # https://github.com/giantswarm/rfc/tree/main/multi-layer-app-config#example

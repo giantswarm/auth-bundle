@@ -24,3 +24,7 @@ There are several ways to install this app onto a workload cluster.
 
 for each app you can use `userConfig` to supply values
 or `extraConfigs` as secret or configmap
+
+### cluster
+
+To enable access to your cluster via dex, ensure that the needed [oidc settings are enabled on the cluster resource.](https://docs.giantswarm.io/advanced/access-management/configure-dex-in-your-cluster/#configure-the-oidc-values-on-the-cluster-resource)

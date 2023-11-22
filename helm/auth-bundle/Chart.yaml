@@ -4,7 +4,7 @@ description: A Helm chart for Giant Swarm's collection of auth tools.
 home: https://github.com/giantswarm/auth-bundle
 sources:
   - https://github.com/giantswarm/auth-bundle
-version: 0.1.0
+version: 0.1.1
 annotations:
   application.giantswarm.io/app-type: bundle
   application.giantswarm.io/in-cluster-app: "true"

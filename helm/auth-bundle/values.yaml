@@ -8,7 +8,7 @@ apps:
     chartName: dex-app
     catalog: giantswarm
     enabled: true
-    namespace: auth
+    namespace: "{{ $.Release.Namespace }}"
     # used by renovate
     # repo: giantswarm/dex-app
     version: 1.42.1
@@ -33,7 +33,7 @@ apps:
     clusterValues:
       configMap: true
       secret: true
-    namespace: auth
+    namespace: "{{ $.Release.Namespace }}"
     # used by renovate
     # repo: giantswarm/athena
     version: 1.12.0
@@ -58,7 +58,7 @@ apps:
     clusterValues:
       configMap: false
       secret: false
-    namespace: auth
+    namespace: "{{ $.Release.Namespace }}"
     # used by renovate
     # repo: giantswarm/rbac-bootstrap-app
     version: 0.2.1

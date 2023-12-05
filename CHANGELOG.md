@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- changed: deploy auth apps in release namespace by default
+- changed: deploy auth apps in `auth` namespace by default
 
 ## [0.1.1] - 2023-11-22
 

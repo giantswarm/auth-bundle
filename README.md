@@ -29,7 +29,25 @@ The auth-bundle can be installed using Giant Swarm's web interface or via direct
 ## Configuring
 
 Each app within the `auth-bundle` can be configured to meet your specific needs. For each app you can use `userConfig` to supply values or `extraConfigs` as secret or configmap
-
+### Example configuration
+```yaml
+apps:
+  athena:
+    userConfig:
+      configMap:
+        values: |
+          managementCluster:
+            name: op2df
+  dex-app:
+    userConfig:
+      configMap:
+        values: |
+          isWorkloadCluster: true
+          deployDexK8SAuthenticator: false
+      secret: true
+  ingress-nginx:
+    enabled: false
+```
 ### [Dex-app](https://github.com/giantswarm/dex-app) Configuration
 
 - **Enable access to your cluster via dex**: ensure that the needed [oidc settings are enabled on the cluster resource.](https://docs.giantswarm.io/advanced/access-management/configure-dex-in-your-cluster/#configure-the-oidc-values-on-the-cluster-resource)

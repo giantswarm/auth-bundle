@@ -61,7 +61,7 @@ apps:
     namespace: giantswarm
     # used by renovate
     # repo: giantswarm/rbac-bootstrap-app
-    version: 0.2.1
+    version: 0.2.2
     userConfig: {}
     # a list of extraConfigs for the App,
     # It can be secret or configmap

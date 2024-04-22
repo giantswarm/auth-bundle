@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - changed: README.md to include more information.
+- changed: reverted deployment of auth apps in `auth` namespace by default.
+- changed: use version 0.2.2 of rbac-bootstrap-app.
 
 ## [0.1.3] - 2024-02-07
 

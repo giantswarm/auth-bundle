@@ -1,4 +1,5 @@
-{{- range $key, $value := .Values.apps }}
+{{ $defaultConfig := fromYaml (include "default.config" .) -}}
+{{- range $key, $value := (merge .Values.apps $defaultConfig) }}
 {{- $appName := include "app.name" (dict "app" .appName "cluster" $.Values.clusterID "ns" $.Release.Namespace) }}
 {{- if .enabled }}
 ---
@@ -38,7 +39,7 @@ spec:
     {{- end }}
   {{- end }}
   {{- end }}
-  {{- end }}  
+  {{- end }}
   kubeConfig:
     {{- if eq $.Release.Namespace "giantswarm" }}  ## Vintage MCs do not have a kubeconfig secret
     inCluster: true
@@ -78,6 +79,7 @@ spec:
   {{- end }}
 {{- end }}
 {{- if .userConfig }}
+{{- $appDefaultConfig := index $defaultConfig $appName -}}
 {{- if .userConfig.configMap }}
 ---
 apiVersion: v1
@@ -89,7 +91,12 @@ metadata:
   name: {{ $appName }}-user-values
   namespace: {{ $.Release.Namespace }}
 data:
-  {{- (tpl (.userConfig.configMap | toYaml | toString) $) | nindent 2 }}
+  values: |
+    {{- if $appDefaultConfig.userConfig.configMap.values -}}
+    {{- (merge (fromYaml .userConfig.configMap.values) (fromYaml (toString $appDefaultConfig.userConfig.configMap.values))) | toYaml | nindent 4 }}
+    {{- else -}}
+    {{- (fromYaml .userConfig.configMap.values) | toYaml | nindent 4 }}
+    {{- end -}}
 {{- end }}
 {{- if .userConfig.secret }}
 ---
@@ -102,7 +109,12 @@ metadata:
   name: {{ $appName }}-user-secrets
   namespace: {{ $.Release.Namespace }}
 stringData:
-  {{- (tpl (.userConfig.secret | toYaml | toString) $) | nindent 2 }}
+  values: |
+    {{- if $appDefaultConfig.userConfig.secret.values -}}
+    {{- (merge (fromYaml .userConfig.secret.values) (fromYaml (toString $appDefaultConfig.userConfig.secret.values))) | toYaml | nindent 4 }}
+    {{- else -}}
+    {{- (fromYaml .userConfig.secret.values) | toYaml | nindent 4 }}
+    {{- end -}}
 {{- end }}
 {{- end }}
 {{- end }}

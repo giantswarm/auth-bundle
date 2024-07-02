@@ -89,12 +89,14 @@ athena:
           name: {{ .Values.managementCluster }}
 ingress-nginx:
   enabled: true
+{{- if .Values.defaultConfig.rbac }}
 rbac-bootstrap:
   userConfig:
     configMap:
       values: |
         bindings:
         {{- .Values.defaultConfig.rbac | toYaml | nindent 8 }}
+{{ end -}}
 {{- else -}}
 {}
 {{- end -}}

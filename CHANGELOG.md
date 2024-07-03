@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- added support for simplified configuration of the auth bundle apps, which minimizes the number pf properties the user needs to provide manually.
+
 ## [0.1.4] - 2024-04-25
 
 - changed: README.md to include more information.

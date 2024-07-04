@@ -44,7 +44,9 @@ Default configuration is suitable for basic use cases, which do not require any 
 # Optional: Default configuration root object
 defaultConfig:
 
-  # Optional: Determines whether the K8s Authenticator is deployed together with Dex
+  # Optional: Determines whether the K8s Authenticator is deployed together with Dex.
+  # The K8s Authenticator is deprecated and will be removed in the future versions of the platform.
+  # It does not need to be deployed unless there is an existing need for it originating in the past while using legacy versions of the platform.
   deployDexK8SAuthenticator: false
 
   # Required: In case the defaultConfig is defined, the oidc property is required
@@ -88,7 +90,7 @@ All supported connector types and configuration formats can be found in [Dex doc
 
 #### Example configuration
 
-This example shows the minimum required configuration.
+This example shows the minimum required configuration for [Microsoft connector in Dex](https://dexidp.io/docs/connectors/microsoft/).
 
 ```yaml
 defaultConfig:

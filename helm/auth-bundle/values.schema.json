@@ -61,10 +61,139 @@
                     "type": "string"
                 }
             }
+        },
+        "connector": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "connectorName": {
+                    "type": "string"
+                },
+                "connectorType": {
+                    "type": "string"
+                },
+                "connectorConfig": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "connectorName",
+                "connectorType",
+                "connectorConfig"
+            ]
+        },
+        "owner": {
+            "type": "object",
+            "properties": {
+                "connectors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/connector"
+                    }
+                }
+            },
+            "required": [
+                "connectors"
+            ]
+        },
+        "rbacRule": {
+            "type": "object",
+            "properties": {
+                "role": {
+                    "type": "string"
+                },
+                "namespaces": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "groups": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "users": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "role"
+            ],
+            "anyOf": [
+                {
+                    "required": [
+                        "groups"
+                    ]
+                },
+                {
+                    "required": [
+                        "users"
+                    ]
+                }
+            ]
         }
     },
     "type": "object",
     "properties": {
+        "defaultConfig": {
+            "type": "object",
+            "properties": {
+                "deployDexK8SAuthenticator": {
+                    "type": "boolean"
+                },
+                "oidc": {
+                    "type": "object",
+                    "properties": {
+                        "expiry": {
+                            "type": "object",
+                            "properties": {
+                                "signingKeys": {
+                                    "type": "string"
+                                },
+                                "idTokens": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "customer": {
+                            "$ref": "#/$defs/owner"
+                        },
+                        "giantswarm": {
+                            "$ref": "#/$defs/owner"
+                        }
+                    },
+                    "anyOf": [
+                        {
+                            "required": [
+                                "customer"
+                            ]
+                        },
+                        {
+                            "required": [
+                                "giantswarm"
+                            ]
+                        }
+                    ]
+                },
+                "rbac": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/rbacRule"
+                    }
+                }
+            },
+            "required": [
+                "oidc"
+            ]
+        },
         "apps": {
             "type": "object",
             "properties": {

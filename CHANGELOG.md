@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.2.1] - 2024-07-25
 
+## Fixed
+
+- Bump [dex-app to v1.42.12](https://github.com/giantswarm/dex-app/releases/tag/v1.42.12) to fix critical CVEs.
+
 ## [0.2.0] - 2024-07-09
 
 - added support for simplified configuration of the auth bundle apps, which minimizes the number pf properties the user needs to provide manually.

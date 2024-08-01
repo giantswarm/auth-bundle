@@ -36,7 +36,7 @@ apps:
     namespace: auth
     # used by renovate
     # repo: giantswarm/athena
-    version: 1.12.2
+    version: 1.12.3
     userConfig:
       configMap:
         values: |

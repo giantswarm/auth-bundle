@@ -1,6 +1,7 @@
 baseDomain: ""
 clusterID: ""
 managementCluster: ""
+organization: ""
 
 apps:
   dex-app:

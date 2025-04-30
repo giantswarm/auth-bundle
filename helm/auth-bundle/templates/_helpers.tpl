@@ -45,3 +45,59 @@ giantswarm.io/service-type: managed
 application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 helm.sh/chart: {{ include "chart" . | quote }}
 {{- end -}}
+
+{{- define "default.config.oidc.connectors" -}}
+  connectors:
+  {{- range $connector := .connectors }}
+  - id: {{ $connector.id }}
+    connectorName: {{ $connector.connectorName }}
+    connectorType: {{ $connector.connectorType }}
+    connectorConfig: |-
+    {{- (merge (fromYaml $connector.connectorConfig) (dict "redirectURI" (printf "https://dex.%s/callback" $.baseDomain))) | toYaml | nindent 6 }}
+  {{- end }}
+{{- end -}}
+
+{{- define "default.config" -}}
+{{- if .Values.defaultConfig -}}
+dex-app:
+  userConfig:
+    configMap:
+      values: |
+        isWorkloadCluster: {{ ne .Values.managementCluster .Values.clusterID }}
+        deployDexK8SAuthenticator: {{ eq .Values.defaultConfig.deployDexK8SAuthenticator true }}
+        {{ if .Values.defaultConfig.oidc.expiry -}}
+        oidc:
+          expiry:
+            {{- .Values.defaultConfig.oidc.expiry | toYaml |  nindent 12 -}}
+        {{- end }}
+    secret:
+      values: |
+        oidc:
+{{- if .Values.defaultConfig.oidc.customer }}
+          customer:
+            {{- (include "default.config.oidc.connectors" (dict "connectors" .Values.defaultConfig.oidc.customer.connectors "baseDomain" .Values.baseDomain)) | nindent 12 }}
+{{ end -}}
+{{- if .Values.defaultConfig.oidc.giantswarm }}
+          giantswarm:
+            {{- (include "default.config.oidc.connectors" (dict "connectors" .Values.defaultConfig.oidc.giantswarm.connectors "baseDomain" .Values.baseDomain)) | nindent 12 }}
+{{ end -}}
+athena:
+  userConfig:
+    configMap:
+      values: |-
+        managementCluster:
+          name: {{ .Values.managementCluster }}
+ingress-nginx:
+  enabled: true
+{{- if .Values.defaultConfig.rbac }}
+rbac-bootstrap:
+  userConfig:
+    configMap:
+      values: |
+        bindings:
+        {{- .Values.defaultConfig.rbac | toYaml | nindent 8 }}
+{{ end -}}
+{{- else -}}
+{}
+{{- end -}}
+{{- end -}}

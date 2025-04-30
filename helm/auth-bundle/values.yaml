@@ -1,6 +1,7 @@
+baseDomain: ""
 clusterID: ""
-organization: ""
 managementCluster: ""
+organization: ""
 
 apps:
   dex-app:
@@ -11,7 +12,7 @@ apps:
     namespace: auth
     # used by renovate
     # repo: giantswarm/dex-app
-    version: 1.42.8
+    version: 1.42.13
     clusterValues:
       configMap: true
       secret: true
@@ -36,7 +37,7 @@ apps:
     namespace: auth
     # used by renovate
     # repo: giantswarm/athena
-    version: 1.12.1
+    version: 1.13.1
     userConfig:
       configMap:
         values: |
@@ -61,7 +62,7 @@ apps:
     namespace: auth
     # used by renovate
     # repo: giantswarm/rbac-bootstrap-app
-    version: 0.2.1
+    version: 0.2.2
     userConfig: {}
     # a list of extraConfigs for the App,
     # It can be secret or configmap
@@ -82,7 +83,7 @@ apps:
     namespace: kube-system
     # used by renovate
     # repo: giantswarm/ingress-nginx-app
-    version: 3.5.1
+    version: 4.0.0
     userConfig: {}
     # a list of extraConfigs for the App,
     # It can be secret or configmap

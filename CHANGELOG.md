@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.5] - 2025-10-10
+
+- Update dependency giantswarm/ingress-nginx-app to v4.1.3
+- Update dependency giantswarm/athena to v1.14.1
+
 ## [0.2.4] - 2025-10-07
 
 ### Changed
@@ -46,7 +51,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - changed: `app.giantswarm.io` label group was changed to `application.giantswarm.io`
 
-[Unreleased]: https://github.com/giantswarm/auth-bundle/compare/v0.2.4...HEAD
+[Unreleased]: https://github.com/giantswarm/auth-bundle/compare/v0.2.5...HEAD
+[0.2.5]: https://github.com/giantswarm/auth-bundle/compare/v0.2.4...v0.2.5
 [0.2.4]: https://github.com/giantswarm/auth-bundle/compare/v0.2.3...v0.2.4
 [0.2.3]: https://github.com/giantswarm/auth-bundle/compare/v0.1.2...v0.2.3
 [0.2.2]: https://github.com/giantswarm/auth-bundle/compare/v0.2.1...v0.2.2

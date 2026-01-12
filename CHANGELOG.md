@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Update dependency `dex` to version v2.1.5.
+- Update dependency `ingress-nginx-app` to version v4.2.1.
+
 ## [0.2.5] - 2025-10-10
 
 - Update dependency giantswarm/ingress-nginx-app to v4.1.3

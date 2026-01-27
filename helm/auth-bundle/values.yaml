@@ -83,7 +83,7 @@ apps:
     namespace: kube-system
     # used by renovate
     # repo: giantswarm/ingress-nginx-app
-    version: 4.2.1
+    version: 4.2.2
     userConfig: {}
     # a list of extraConfigs for the App,
     # It can be secret or configmap

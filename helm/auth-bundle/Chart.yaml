@@ -8,6 +8,5 @@ sources:
 version: 0.5.0
 annotations:
   io.giantswarm.application.audience: all
-  io.giantswarm.application.in-cluster-app: "true"
   io.giantswarm.application.team: shield
   io.giantswarm.application.app-type: bundle

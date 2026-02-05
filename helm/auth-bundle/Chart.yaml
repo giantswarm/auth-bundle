@@ -8,5 +8,6 @@ sources:
 version: 0.5.1
 annotations:
   io.giantswarm.application.audience: all
+  io.giantswarm.application.managed: "true"
   io.giantswarm.application.team: shield
   io.giantswarm.application.app-type: bundle

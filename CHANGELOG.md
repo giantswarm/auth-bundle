@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Migrate chart metadata annotations to OCI-compatible format.
+- Update `athena` to v1.15.2.
+- Update `ingress-nginx-app` to version v4.2.4.
+- Update `rbac-bootstrap-app` to v0.2.3.
 
 ## [0.5.1] - 2026-02-03
 

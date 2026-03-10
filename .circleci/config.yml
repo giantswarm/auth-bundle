@@ -6,7 +6,7 @@ workflows:
   package-and-push-chart-on-tag:
     jobs:
     - architect/push-to-app-catalog:
-        name: app-catalog
+        name: push-auth-bundle-to-playground-catalog
         context: architect
         executor: app-build-suite
         app_catalog: giantswarm-playground-catalog
@@ -21,7 +21,7 @@ workflows:
             - main
             - master
     - architect/push-to-app-catalog:
-        name: app-catalog
+        name: push-auth-bundle-to-giantswarm-catalog
         context: architect
         executor: app-build-suite
         app_catalog: giantswarm-catalog

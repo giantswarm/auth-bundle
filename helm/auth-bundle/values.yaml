@@ -12,7 +12,7 @@ apps:
     namespace: auth
     # used by renovate
     # repo: giantswarm/dex-app
-    version: 2.2.0
+    version: 2.2.1
     clusterValues:
       configMap: true
       secret: true

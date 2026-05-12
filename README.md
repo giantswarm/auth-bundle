@@ -13,6 +13,8 @@ The auth bundle provides all necessary components to enable auth capabilities in
 
 ## Installing
 
+Check out the [official docs](https://docs.giantswarm.io/tutorials/access-management/configure-dex-in-your-cluster) to make sure you dont miss any step when configuring the bundle for workload cluster access.
+
 ### Quick Start
 
 The auth-bundle can be installed using Giant Swarm's web interface or via direct Kubernetes resource deployment. For a quick installation, follow these steps:

@@ -37,7 +37,7 @@ Common labels
 app.kubernetes.io/instance: {{ .Release.Name | quote }}
 app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
 app.kubernetes.io/part-of: {{ include "name" . | quote }}
-app.kubernetes.io/version: {{ .Chart.Version | quote }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 giantswarm.io/cluster: {{ .Values.clusterID | quote }}
 giantswarm.io/managed-by: {{ .Release.Name | quote }}
 giantswarm.io/organization: {{ .Values.organization | quote }}

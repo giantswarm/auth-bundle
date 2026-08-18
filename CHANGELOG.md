@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.6.1] - 2026-08-18
 
+### Changed
+
+- Use `.Chart.AppVersion` instead of `.Chart.Version` for label value.
+
 ## [0.6.0] - 2026-03-10
 
 ### Added

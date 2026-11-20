@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Update `dex-app` to v3.5.2. Dex now runs two replicas behind a PodDisruptionBudget, and static client secrets can be read from Kubernetes Secrets.
+- **Breaking:** `dex-app` v3 defaults `oidc.responseTypes` to `["code"]`, which turns off the OAuth2 implicit flow. Clients that use the implicit or hybrid flow need `oidc.responseTypes` set to `["code", "token", "id_token"]` in the dex-app user values. A pre-defined static client with a `clientID` and no secret now fails the render instead of being left out.
+- Update `athena` to v1.16.0, which can run on arm64 node pools.
+
 ### Fixed
 
 - The `helm.sh/chart` label is valid for long chart versions: the 63-character cut trims the whole trailing run of `-`, `.` and `_`.
